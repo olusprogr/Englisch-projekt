@@ -4,163 +4,915 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sustainability Initiatives in Schools</title>
-    <meta name="description" content="Building a greener future through education, responsibility, and innovation in schools.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              leaf: { 50: '#f0f7f2', 100: '#dceee1', 200: '#baddc5', 400: '#5aa87a', 700: '#1e5a3c', 800: '#1a4832', 900: '#133b29' },
-              gold: { 400: '#d4a843' },
-            },
-          },
-        },
-      }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-      body { font-family: 'Source Sans 3', sans-serif; }
-      h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --leaf-50: #f0f7f2;
+            --leaf-100: #dceee1;
+            --leaf-200: #baddc5;
+            --leaf-400: #5aa87a;
+            --leaf-700: #1e5a3c;
+            --leaf-800: #1a4832;
+            --leaf-900: #133b29;
+            --gold: #d4a843;
+            --gold-light: #e8c97a;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--leaf-50);
+            color: var(--leaf-900);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== FLOATING PARTICLES ===== */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0%   { opacity: 0; transform: translateY(0) scale(0.5) rotate(0deg); }
+            10%  { opacity: 0.6; }
+            90%  { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-110vh) scale(1.2) rotate(360deg); }
+        }
+
+        /* ===== CURSOR ===== */
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-ring {
+            width: 32px; height: 32px;
+            border: 1.5px solid var(--leaf-400);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.12s ease, width 0.2s, height 0.2s, opacity 0.2s;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, #0d3d25 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, #1e5a3c 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, #133b29 0%, transparent 50%),
+                linear-gradient(135deg, #0a2d1c 0%, #1e5a3c 50%, #0f3d26 100%);
+        }
+
+        /* Animated SVG forest silhouette */
+        .forest-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            opacity: 0.25;
+        }
+
+        /* Animated grid overlay */
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(90,168,122,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(90,168,122,0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridShift 20s linear infinite;
+        }
+
+        @keyframes gridShift {
+            0%   { background-position: 0 0; }
+            100% { background-position: 60px 60px; }
+        }
+
+        /* Glowing orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: orbPulse ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 500px; height: 500px; background: rgba(90,168,122,0.2); top: -100px; left: -150px; animation-duration: 7s; }
+        .orb-2 { width: 400px; height: 400px; background: rgba(212,168,67,0.15); bottom: -50px; right: -100px; animation-duration: 5s; }
+        .orb-3 { width: 300px; height: 300px; background: rgba(30,90,60,0.3); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 9s; }
+
+        @keyframes orbPulse {
+            0%   { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(20px, -20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+            padding: 2rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 100px;
+            padding: 6px 18px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.2s forwards;
+        }
+
+        .badge span { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: 0.08em; text-transform: uppercase; }
+        .badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,67,0.6); }
+            50% { box-shadow: 0 0 0 6px rgba(212,168,67,0); }
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            color: white;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.4s forwards;
+        }
+
+        header h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .header-sub {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+            margin-inline: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.7s forwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 0.8s 1.2s forwards;
+        }
+
+        .scroll-indicator span { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+            transform-origin: top;
+        }
+
+        @keyframes scrollLine {
+            0%   { transform: scaleY(0); opacity: 0; }
+            50%  { transform: scaleY(1); opacity: 1; }
+            100% { transform: scaleY(1) translateY(20px); opacity: 0; }
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--leaf-700);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .stat-item.visible { opacity: 1; transform: translateY(0); }
+        .stat-item strong { display: block; font-size: 2rem; font-family: 'Playfair Display', serif; color: var(--gold-light); }
+        .stat-item small { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
+
+        /* ===== MAIN ===== */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Timeline connector */
+        main::before {
+            content: '';
+            position: absolute;
+            left: calc(50% - 1px);
+            top: 5rem; bottom: 5rem;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--leaf-200) 10%, var(--leaf-200) 90%, transparent);
+            opacity: 0.5;
+            display: none;
+        }
+
+        /* ===== CARDS ===== */
+        .section-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid var(--leaf-100);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(19,59,41,0.06);
+        }
+
+        .section-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-card:hover {
+            box-shadow: 0 20px 60px rgba(19,59,41,0.12);
+            transform: translateY(-4px);
+        }
+
+        /* Card accent bar */
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--leaf-400), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .section-card.visible::before { transform: scaleX(1); }
+
+        /* Card background pattern */
+        .section-card::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--leaf-50) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--leaf-100), var(--leaf-50));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--leaf-200);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .section-card:hover .card-icon {
+            transform: rotate(-8deg) scale(1.1);
+            background: linear-gradient(135deg, var(--leaf-700), var(--leaf-400));
+        }
+
+        .section-card:hover .card-icon svg { stroke: white; }
+
+        .card-icon svg { width: 24px; height: 24px; stroke: var(--leaf-700); stroke-width: 1.8; fill: none; transition: stroke 0.3s; }
+
+        .card-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: var(--leaf-900);
+        }
+
+        .card-intro {
+            color: rgba(19,59,41,0.65);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            font-size: 0.98rem;
+        }
+
+        /* ===== SUBSECTIONS ===== */
+        .subsections { display: flex; flex-direction: column; gap: 1.8rem; }
+
+        .subsection { position: relative; }
+
+        .subsection h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--leaf-800);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .subsection h3::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .subsection:hover h3::before { width: 30px; }
+
+        .point-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .point-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: rgba(19,59,41,0.72);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.2s;
+            cursor: default;
+        }
+
+        .point-list li:hover {
+            background: var(--leaf-50);
+            transform: translateX(4px);
+        }
+
+        .point-list li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 5px;
+            height: 5px;
+            background: var(--leaf-400);
+            border-radius: 50%;
+            margin-top: 8px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .point-list li:hover::before {
+            background: var(--gold);
+            transform: scale(1.5);
+        }
+
+        .highlight-box {
+            margin-top: 1rem;
+            padding: 1rem 1.2rem;
+            border-left: 3px solid var(--gold);
+            background: linear-gradient(90deg, rgba(212,168,67,0.06), transparent);
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--leaf-800);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 8px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.15;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Section divider inside card */
+        .card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--leaf-100), transparent);
+            margin: 1.5rem 0;
+        }
+
+        /* ===== PROGRESS TAGS ===== */
+        .impact-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .tag-green { background: rgba(90,168,122,0.12); color: var(--leaf-700); border: 1px solid rgba(90,168,122,0.25); }
+        .tag-gold  { background: rgba(212,168,67,0.12); color: #8a6b1c; border: 1px solid rgba(212,168,67,0.3); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--leaf-900);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .footer-leaf {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50%       { transform: rotate(5deg); }
+        }
+
+        footer p { position: relative; color: rgba(255,255,255,0.35); font-size: 0.85rem; }
+        footer strong { color: rgba(255,255,255,0.6); }
+
+        /* ===== SCROLL PROGRESS ===== */
+        #progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--leaf-400), var(--gold));
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s;
+            box-shadow: 0 0 8px var(--gold);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        #backTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            background: var(--leaf-700);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s, background 0.2s;
+            z-index: 500;
+            box-shadow: 0 4px 20px rgba(19,59,41,0.3);
+        }
+
+        #backTop.show { opacity: 1; transform: translateY(0); }
+        #backTop:hover { background: var(--leaf-400); }
+        #backTop svg { width: 18px; height: 18px; stroke: white; stroke-width: 2; fill: none; }
+
+        /* ===== REVEAL TRANSITIONS ===== */
+        .section-card:nth-child(1) { transition-delay: 0.05s; }
+        .section-card:nth-child(2) { transition-delay: 0.1s; }
+        .section-card:nth-child(3) { transition-delay: 0.15s; }
+
     </style>
 </head>
-<body class="bg-leaf-50 text-leaf-900 min-h-screen">
-    <header class="relative overflow-hidden bg-leaf-700 py-20 px-6 text-center">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 left-1/4 w-64 h-64 rounded-full bg-gold-400 blur-3xl"></div>
-            <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-leaf-50 blur-3xl"></div>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Scroll progress bar -->
+<div id="progress"></div>
+
+<!-- Floating particles -->
+<div id="particles"></div>
+
+<!-- Back to top -->
+<button id="backTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="header-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Animated SVG Forest -->
+    <svg class="forest-silhouette" viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g fill="rgba(90,168,122,0.6)">
+            <polygon points="0,300 60,180 120,300"/>
+            <polygon points="80,300 150,140 220,300"/>
+            <polygon points="160,300 240,100 320,300"/>
+            <polygon points="260,300 330,160 400,300"/>
+            <polygon points="340,300 420,80 500,300"/>
+            <polygon points="440,300 510,130 580,300"/>
+            <polygon points="530,300 610,90 690,300"/>
+            <polygon points="640,300 720,150 800,300"/>
+            <polygon points="740,300 820,70 900,300"/>
+            <polygon points="840,300 920,120 1000,300"/>
+            <polygon points="940,300 1020,100 1100,300"/>
+            <polygon points="1040,300 1120,160 1200,300"/>
+            <polygon points="1140,300 1220,110 1300,300"/>
+            <polygon points="1240,300 1320,140 1400,300"/>
+            <polygon points="1340,300 1400,180 1440,300"/>
+        </g>
+        <g fill="rgba(30,90,60,0.8)">
+            <polygon points="20,300 80,200 140,300"/>
+            <polygon points="120,300 190,160 260,300"/>
+            <polygon points="230,300 300,120 370,300"/>
+            <polygon points="320,300 400,180 480,300"/>
+            <polygon points="460,300 530,100 600,300"/>
+            <polygon points="560,300 640,150 720,300"/>
+            <polygon points="680,300 750,110 820,300"/>
+            <polygon points="780,300 860,170 940,300"/>
+            <polygon points="880,300 960,90 1040,300"/>
+            <polygon points="980,300 1060,140 1140,300"/>
+            <polygon points="1100,300 1180,120 1260,300"/>
+            <polygon points="1200,300 1280,160 1360,300"/>
+            <polygon points="1300,300 1380,190 1440,300"/>
+        </g>
+    </svg>
+
+    <div class="header-content">
+        <div class="badge">
+            <div class="badge-dot"></div>
+            <span>School Sustainability</span>
         </div>
-        <div class="relative max-w-3xl mx-auto">
-            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
-                <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>
-                <span class="text-sm font-medium text-white/80">School Sustainability</span>
+        <h1>Sustainability<br>Initiatives in <em>Schools</em></h1>
+        <p class="header-sub">Building a greener future through education, responsibility, and innovation.</p>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</header>
+
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+    <div class="stat-item"><strong data-count="3">0</strong><small>Key Initiatives</small></div>
+    <div class="stat-item"><strong data-count="40">0</strong><small>% Less Paper Used</small></div>
+    <div class="stat-item"><strong data-count="60">0</strong><small>% Food Waste Reduced</small></div>
+    <div class="stat-item"><strong data-count="100">0</strong><small>% Student Impact</small></div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+    <!-- Section 1 -->
+    <section class="section-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">Sustainability Initiatives in Schools</h1>
-            <p class="mt-6 text-lg text-white/70 max-w-xl mx-auto">Building a greener future through education, responsibility, and innovation.</p>
+            <h2>1. Educational Importance</h2>
         </div>
-    </header>
-    <main class="max-w-4xl mx-auto px-6 py-16 space-y-12">
-        <!-- Section 1 -->
-        <section class="bg-white rounded-2xl shadow-sm border border-leaf-200 p-8 md:p-10">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-leaf-100">
-                    <svg class="w-5 h-5 text-leaf-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold">1. Educational Importance</h2>
+
+        <p class="card-intro">Sustainability is no longer a niche subject but a fundamental competence for the 21st century. Schools have a responsibility to prepare students for real-world challenges such as climate change, resource scarcity, and social responsibility.</p>
+
+        <div class="impact-tags">
+            <span class="tag tag-green">Climate Literacy</span>
+            <span class="tag tag-green">Critical Thinking</span>
+            <span class="tag tag-gold">Global Citizenship</span>
+        </div>
+
+        <div class="card-divider"></div>
+
+        <div class="subsections">
+            <div class="subsection">
+                <h3>Mandatory Extracurricular Classes</h3>
+                <ul class="point-list">
+                    <li>Promote interdisciplinary learning by connecting science, economics, ethics, and civic education</li>
+                    <li>Develop critical thinking and problem-solving skills through real-life projects and case studies</li>
+                    <li>Encourage responsible decision-making by helping students understand the impact of their everyday actions</li>
+                    <li>Support global citizenship and prepare students for future academic and professional environments</li>
+                </ul>
+                <div class="highlight-box">By making these classes mandatory, the school ensures that all students gain essential sustainability literacy.</div>
             </div>
-            <p class="text-leaf-700/80 leading-relaxed mb-8">Sustainability is no longer a niche subject but a fundamental competence for the 21st century. Schools have a responsibility to prepare students for real-world challenges such as climate change, resource scarcity, and social responsibility.</p>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Mandatory Extracurricular Classes</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Promote interdisciplinary learning by connecting science, economics, ethics, and civic education</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Develop critical thinking and problem-solving skills through real-life projects and case studies</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourage responsible decision-making by helping students understand the impact of their everyday actions</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Support global citizenship and prepare students for future academic and professional environments</li>
-                    </ul>
-                    <p class="mt-4 pl-4 border-l-2 border-gold-400 text-leaf-800/80 italic text-sm">By making these classes mandatory, the school ensures that all students gain essential sustainability literacy.</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Long-Term Appreciation and Personal Growth</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Hands-on learning (recycling initiatives, energy audits, school gardens) creates personal connections</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Tangible results increase motivation and sense of agency</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Development of values such as responsibility, cooperation, and respect for resources</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Builds a mindset of stewardship for a sustainable future</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Institutional and Community Benefits</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Enhances the school's profile as a responsible institution</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Strengthens partnerships with local organizations</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Creates a positive school culture centered on shared responsibility</li>
-                    </ul>
-                </div>
+
+            <div class="card-divider"></div>
+
+            <div class="subsection">
+                <h3>Long-Term Appreciation and Personal Growth</h3>
+                <ul class="point-list">
+                    <li>Hands-on learning (recycling initiatives, energy audits, school gardens) creates personal connections</li>
+                    <li>Tangible results increase motivation and sense of agency</li>
+                    <li>Development of values such as responsibility, cooperation, and respect for resources</li>
+                    <li>Builds a mindset of stewardship for a sustainable future</li>
+                </ul>
             </div>
-        </section>
-        <!-- Section 2 -->
-        <section class="bg-white rounded-2xl shadow-sm border border-leaf-200 p-8 md:p-10">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-leaf-100">
-                    <svg class="w-5 h-5 text-leaf-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold">2. Importance of Reducing Food Waste</h2>
+
+            <div class="card-divider"></div>
+
+            <div class="subsection">
+                <h3>Institutional and Community Benefits</h3>
+                <ul class="point-list">
+                    <li>Enhances the school's profile as a responsible institution</li>
+                    <li>Strengthens partnerships with local organizations</li>
+                    <li>Creates a positive school culture centered on shared responsibility</li>
+                </ul>
             </div>
-            <p class="text-leaf-700/80 leading-relaxed mb-8">Food waste is a major global and local issue with environmental, economic, and social consequences. A policy that bans unnecessary disposal of edible food and promotes donation has clear benefits.</p>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Key Benefits</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reduces environmental footprint and greenhouse gas emissions</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Teaches responsible resource management</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Addresses social inequality by supporting people in need</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Models ethical and sustainable institutional behavior</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Educational Value and Student Development</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Hands-on learning about supply chains, consumption, and social justice</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourages student leadership in organizing donation systems</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Strengthens empathy and social responsibility</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Promotes mindful consumption habits</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Appreciation and School Culture</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Students value food more by recognizing its importance to others</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Develop pride in contributing to community support</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Build shared purpose within the school</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Foster gratitude and ethical awareness</li>
-                    </ul>
-                    <p class="mt-4 pl-4 border-l-2 border-gold-400 text-leaf-800/80 italic text-sm">This appreciation often leads to long-term behavioral change beyond school.</p>
-                </div>
+        </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
             </div>
-        </section>
-        <!-- Section 3 -->
-        <section class="bg-white rounded-2xl shadow-sm border border-leaf-200 p-8 md:p-10">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-leaf-100">
-                    <svg class="w-5 h-5 text-leaf-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold">3. Using iPads Instead of Excessive Paper</h2>
+            <h2>2. Reducing Food Waste</h2>
+        </div>
+
+        <p class="card-intro">Food waste is a major global and local issue with environmental, economic, and social consequences. A policy that bans unnecessary disposal of edible food and promotes donation has clear benefits.</p>
+
+        <div class="impact-tags">
+            <span class="tag tag-green">Zero Waste</span>
+            <span class="tag tag-gold">Social Justice</span>
+            <span class="tag tag-green">Community Impact</span>
+        </div>
+
+        <div class="card-divider"></div>
+
+        <div class="subsections">
+            <div class="subsection">
+                <h3>Key Benefits</h3>
+                <ul class="point-list">
+                    <li>Reduces environmental footprint and greenhouse gas emissions</li>
+                    <li>Teaches responsible resource management</li>
+                    <li>Addresses social inequality by supporting people in need</li>
+                    <li>Models ethical and sustainable institutional behavior</li>
+                </ul>
             </div>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Importance of Reducing Paper Use</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reduces ecological footprint by lowering paper demand</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Supports responsible resource use</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reflects modern learning environments</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Minimizes physical waste</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Educational Benefits</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Enhances interactive and personalized learning</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Improves organization and accessibility</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Develops digital literacy and media competence</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourages collaborative learning</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Appreciation and Student Mindset</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Raises awareness of resource consumption</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourages mindful use of digital technology</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Creates pride in sustainable participation</li>
-                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reinforces long-term sustainable habits</li>
-                    </ul>
-                    <p class="mt-4 pl-4 border-l-2 border-gold-400 text-leaf-800/80 italic text-sm">Sustainability is not a restriction, but an innovation that improves both education and environmental responsibility.</p>
-                </div>
+
+            <div class="card-divider"></div>
+
+            <div class="subsection">
+                <h3>Educational Value and Student Development</h3>
+                <ul class="point-list">
+                    <li>Hands-on learning about supply chains, consumption, and social justice</li>
+                    <li>Encourages student leadership in organizing donation systems</li>
+                    <li>Strengthens empathy and social responsibility</li>
+                    <li>Promotes mindful consumption habits</li>
+                </ul>
             </div>
-        </section>
-    </main>
-    <footer class="border-t border-leaf-200 py-8 text-center text-sm text-leaf-700/60">
-        <p>Sustainability Initiatives in Schools &middot; Building a greener tomorrow</p>
-    </footer>
+
+            <div class="card-divider"></div>
+
+            <div class="subsection">
+                <h3>Appreciation and School Culture</h3>
+                <ul class="point-list">
+                    <li>Students value food more by recognizing its importance to others</li>
+                    <li>Develop pride in contributing to community support</li>
+                    <li>Build shared purpose within the school</li>
+                    <li>Foster gratitude and ethical awareness</li>
+                </ul>
+                <div class="highlight-box">This appreciation often leads to long-term behavioral change beyond school.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="section-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01" stroke-linecap="round" stroke-width="2"/></svg>
+            </div>
+            <h2>3. iPads Instead of Paper</h2>
+        </div>
+
+        <div class="impact-tags">
+            <span class="tag tag-green">Digital Learning</span>
+            <span class="tag tag-gold">Eco Innovation</span>
+            <span class="tag tag-green">Future-Ready</span>
+        </div>
+
+        <div class="card-divider"></div>
+
+        <div class="subsections">
+            <div class="subsection">
+                <h3>Importance of Reducing Paper Use</h3>
+                <ul class="point-list">
+                    <li>Reduces ecological footprint by lowering paper demand</li>
+                    <li>Supports responsible resource use</li>
+                    <li>Reflects modern learning environments</li>
+                    <li>Minimizes physical waste</li>
+                </ul>
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="subsection">
+                <h3>Educational Benefits</h3>
+                <ul class="point-list">
+                    <li>Enhances interactive and personalized learning</li>
+                    <li>Improves organization and accessibility</li>
+                    <li>Develops digital literacy and media competence</li>
+                    <li>Encourages collaborative learning</li>
+                </ul>
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="subsection">
+                <h3>Appreciation and Student Mindset</h3>
+                <ul class="point-list">
+                    <li>Raises awareness of resource consumption</li>
+                    <li>Encourages mindful use of digital technology</li>
+                    <li>Creates pride in sustainable participation</li>
+                    <li>Reinforces long-term sustainable habits</li>
+                </ul>
+                <div class="highlight-box">Sustainability is not a restriction, but an innovation that improves both education and environmental responsibility.</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <span class="footer-leaf">🌿</span>
+    <p><strong>Sustainability Initiatives in Schools</strong></p>
+    <p style="margin-top: 0.5rem;">Building a greener tomorrow, one student at a time.</p>
+</footer>
+
+<script>
+    // ===== CUSTOM CURSOR =====
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function animateCursor() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        dot.style.left  = mx + 'px';
+        dot.style.top   = my + 'px';
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button, .point-list li').forEach(el => {
+        el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.opacity = '0.5'; });
+        el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; ring.style.opacity = '1'; });
+    });
+
+    // ===== SCROLL PROGRESS =====
+    const progress = document.getElementById('progress');
+    const backTop  = document.getElementById('backTop');
+
+    window.addEventListener('scroll', () => {
+        const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        progress.style.width = pct + '%';
+        backTop.classList.toggle('show', window.scrollY > 400);
+    });
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.section-card, .stat-item').forEach(el => observer.observe(el));
+
+    // ===== COUNT-UP ANIMATION =====
+    const countObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const nums = entry.target.querySelectorAll('[data-count]');
+                nums.forEach((el, i) => {
+                    const target = parseInt(el.dataset.count);
+                    let start = 0;
+                    const step = target / 60;
+                    setTimeout(() => {
+                        const interval = setInterval(() => {
+                            start = Math.min(start + step, target);
+                            el.textContent = Math.round(start) + (target >= 40 ? '%' : '');
+                            if (start >= target) clearInterval(interval);
+                        }, 20);
+                    }, i * 150);
+                });
+                countObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stats-bar').forEach(el => countObs.observe(el));
+
+    // ===== FLOATING PARTICLES =====
+    const container = document.getElementById('particles');
+    const shapes = ['●', '▲', '◆', '★'];
+    const colors = ['#5aa87a', '#d4a843', '#baddc5', '#1e5a3c', '#e8c97a'];
+
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 8 + 4;
+        p.style.cssText = `
+            left: ${Math.random() * 100}%;
+            bottom: -20px;
+            width: ${size}px;
+            height: ${size}px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            opacity: 0;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '3px'};
+            animation-duration: ${8 + Math.random() * 12}s;
+            animation-delay: ${Math.random() * 10}s;
+            transform-origin: center;
+        `;
+        container.appendChild(p);
+    }
+</script>
 </body>
 </html>
