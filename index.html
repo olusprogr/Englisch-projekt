@@ -2,557 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sustainability Initiatives in Schools</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sustainability Initiatives in Schools</title>
+    <meta name="description" content="Building a greener future through education, responsibility, and innovation in schools.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              leaf: { 50: '#f0f7f2', 100: '#dceee1', 200: '#baddc5', 400: '#5aa87a', 700: '#1e5a3c', 800: '#1a4832', 900: '#133b29' },
+              gold: { 400: '#d4a843' },
+            },
+          },
+        },
+      }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            color: #1a4d2e;
-            background: linear-gradient(135deg, #0f2818 0%, #1b5e20 50%, #2d7a3e 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><style>.leaf1{animation: sway 4s ease-in-out infinite;} .leaf2{animation: sway 5s ease-in-out infinite; animation-delay: 1s;} .leaf3{animation: sway 6s ease-in-out infinite; animation-delay: 2s;}</style></defs><rect fill="%23f0f8f0" width="1200" height="800"/><path opacity="0.15" fill="%23166534" d="M0,600 Q300,500 600,550 T1200,600 L1200,800 L0,800 Z"/><path opacity="0.1" fill="%23166534" d="M0,650 Q300,600 600,620 T1200,650 L1200,800 L0,800 Z"/><circle cx="100" cy="100" r="50" fill="%23dcfce7" opacity="0.1"/><circle cx="1100" cy="150" r="80" fill="%23dcfce7" opacity="0.08"/></svg>');
-            background-repeat: repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Navigation */
-        nav {
-            background: linear-gradient(135deg, #0d47a1 0%, #1b5e20 50%, #00796b 100%);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 8px 32px rgba(26, 77, 46, 0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid #4caf50;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: white;
-            padding: 120px 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(76, 175, 80, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(56, 142, 60, 0.3) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(76, 175, 80, 0.2);
-            border-radius: 50%;
-            animation: float 20s infinite ease-in-out;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            50% { transform: translateY(30px) translateX(-20px); }
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-2deg); }
-            50% { transform: rotate(2deg); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(76, 175, 80, 0.8); }
-        }
-
-        @keyframes leaf-fall {
-            0% {
-                opacity: 1;
-                transform: translateY(-10px) translateX(0) rotateZ(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(100px) translateX(50px) rotateZ(360deg);
-            }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid #81c784;
-            cursor: pointer;
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1.2s ease 0.4s both;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .hero-btn:hover {
-            background: white;
-            color: #1b5e20;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Section Styles */
-        section {
-            margin-bottom: 3rem;
-            background: rgba(240, 248, 240, 0.95);
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(27, 94, 32, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(76, 175, 80, 0.2);
-        }
-
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.25);
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1b5e20, #4caf50);
-        }
-
-        section:nth-child(2)::before {
-            background: linear-gradient(90deg, #558b2f, #9ccc65);
-        }
-
-        section:nth-child(3)::before {
-            background: linear-gradient(90deg, #00897b, #4db6ac);
-        }
-
-        h1 {
-            color: white;
-        }
-
-        h2 {
-            color: #1b5e20;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        section:nth-child(2) h2 {
-            color: #558b2f;
-        }
-
-        section:nth-child(3) h2 {
-            color: #00897b;
-        }
-
-        h3 {
-            color: #1b5e20;
-            font-size: 1.3rem;
-            margin-top: 2rem;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        section:nth-child(2) h3 {
-            color: #558b2f;
-        }
-
-        section:nth-child(3) h3 {
-            color: #00897b;
-        }
-
-        /* Lists */
-        ul {
-            margin-top: 1.2rem;
-            margin-bottom: 2rem;
-            list-style: none;
-        }
-
-        li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-            line-height: 1.8;
-        }
-
-        li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #4caf50;
-            font-weight: bold;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-        }
-
-        section:nth-child(2) li:before {
-            color: #9ccc65;
-        }
-
-        section:nth-child(3) li:before {
-            color: #4db6ac;
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #2d6b3a;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #0f2818 0%, #1b5e20 50%, #2d7a3e 100%);
-            color: #e8f5e9;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 3rem;
-            border-top: 3px solid #4caf50;
-        }
-
-        footer p {
-            color: #e8f5e9;
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(76, 175, 80, 0.3);
-            border: 2px solid rgba(76, 175, 80, 0.5);
-        }
-
-        .social-links a:hover {
-            background: #4caf50;
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            body::before {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            section {
-                padding: 2rem 1.5rem;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Nature decorative elements */
-        .leaf {
-            position: fixed;
-            pointer-events: none;
-            font-size: 2rem;
-            opacity: 0.7;
-            z-index: 1;
-        }
-
-        .leaf1 { animation: leaf-fall 10s linear infinite; }
-        .leaf2 { animation: leaf-fall 12s linear infinite 2s; }
-        .leaf3 { animation: leaf-fall 14s linear infinite 4s; }
-        .leaf4 { animation: leaf-fall 11s linear infinite 1s; }
-        .leaf5 { animation: leaf-fall 13s linear infinite 3s; }
+      body { font-family: 'Source Sans 3', sans-serif; }
+      h1, h2, h3 { font-family: 'Playfair Display', serif; }
     </style>
 </head>
-<body>
-
-<!-- Animated falling leaves -->
-<div class="leaf leaf1" style="left: 10%;">🍃</div>
-<div class="leaf leaf2" style="left: 20%;">🌿</div>
-<div class="leaf leaf3" style="left: 30%;">🍂</div>
-<div class="leaf leaf4" style="left: 70%;">🍃</div>
-<div class="leaf leaf5" style="left: 85%;">🌿</div>
-
-<!-- Navigation -->
-<nav>
-    <ul>
-        <li><a href="#education">📚 Education</a></li>
-        <li><a href="#food">🍎 Food Waste</a></li>
-        <li><a href="#technology">💻 Technology</a></li>
-    </ul>
-</nav>
-
-<!-- Hero Section -->
-<div class="hero">
-    <h1>🌱 Sustainability Initiatives in Schools</h1>
-    <p>Building a greener future through education, responsibility, and conscious choices</p>
-    <a href="#education" class="hero-btn">Learn More</a>
-</div>
-
-<div class="container">
-
-<section id="education">
-    <h2>📚 Educational Importance</h2>
-    <p>
-        Sustainability is no longer a niche subject but a fundamental competence for the 21st century. 
-        Schools have a responsibility to prepare students for real-world challenges such as climate change, 
-        resource scarcity, and social responsibility.
-    </p>
-
-    <h3>🎯 Mandatory Extracurricular Classes</h3>
-    <ul>
-        <li>Promote interdisciplinary learning by connecting science, economics, ethics, and civic education</li>
-        <li>Develop critical thinking and problem-solving skills through real-life projects and case studies</li>
-        <li>Encourage responsible decision-making by helping students understand the impact of their everyday actions</li>
-        <li>Support global citizenship and prepare students for future academic and professional environments</li>
-    </ul>
-
-    <h3>🌱 Long-Term Appreciation and Personal Growth</h3>
-    <ul>
-        <li>Hands-on learning (recycling initiatives, energy audits, school gardens) creates personal connections</li>
-        <li>Tangible results increase motivation and sense of agency</li>
-        <li>Development of values such as responsibility, cooperation, and respect for resources</li>
-        <li>Builds a mindset of stewardship for a sustainable future</li>
-    </ul>
-
-    <h3>🏫 Institutional and Community Benefits</h3>
-    <ul>
-        <li>Enhances the school’s profile as a responsible institution</li>
-        <li>Strengthens partnerships with local organizations</li>
-        <li>Creates a positive school culture centered on shared responsibility</li>
-    </ul>
-</section>
-
-<section id="food">
-    <h2>🍎 Importance of Reducing Food Waste</h2>
-    <p>
-        Food waste is a major global and local issue with environmental, economic, and social consequences.
-        A policy that bans unnecessary disposal of edible food and promotes donation has clear benefits.
-    </p>
-
-    <ul>
-        <li>Reduces environmental footprint and greenhouse gas emissions</li>
-        <li>Teaches responsible resource management</li>
-        <li>Addresses social inequality by supporting people in need</li>
-        <li>Models ethical and sustainable institutional behavior</li>
-    </ul>
-
-    <h3>🎓 Educational Value and Student Development</h3>
-    <ul>
-        <li>Hands-on learning about supply chains, consumption, and social justice</li>
-        <li>Encourages student leadership in organizing donation systems</li>
-        <li>Strengthens empathy and social responsibility</li>
-        <li>Promotes mindful consumption habits</li>
-    </ul>
-
-    <h3>💖 Appreciation and School Culture</h3>
-    <ul>
-        <li>Students value food more by recognizing its importance to others</li>
-        <li>Develop pride in contributing to community support</li>
-        <li>Build shared purpose within the school</li>
-        <li>Foster gratitude and ethical awareness</li>
-    </ul>
-
-    <p>
-        This appreciation often leads to long-term behavioral change beyond school.
-    </p>
-</section>
-
-<section id="technology">
-    <h2>💻 Using iPads Instead of Excessive Paper</h2>
-
-    <h3>♻️ Importance of Reducing Paper Use</h3>
-    <ul>
-        <li>Reduces ecological footprint by lowering paper demand</li>
-        <li>Supports responsible resource use</li>
-        <li>Reflects modern learning environments</li>
-        <li>Minimizes physical waste</li>
-    </ul>
-
-    <h3>🌟 Educational Benefits</h3>
-    <ul>
-        <li>Enhances interactive and personalized learning</li>
-        <li>Improves organization and accessibility</li>
-        <li>Develops digital literacy and media competence</li>
-        <li>Encourages collaborative learning</li>
-    </ul>
-
-    <h3>🎨 Appreciation and Student Mindset</h3>
-    <ul>
-        <li>Raises awareness of resource consumption</li>
-        <li>Encourages mindful use of digital technology</li>
-        <li>Creates pride in sustainable participation</li>
-        <li>Reinforces long-term sustainable habits</li>
-    </ul>
-
-    <p>
-        Sustainability is not a restriction, but an innovation that improves both education and environmental responsibility.
-    </p>
-</section>
-
-</div>
-
-<!-- Footer -->
-<footer>
-    <p>&copy; 2026 Sustainability Initiatives in Schools. Committed to building a sustainable future.</p>
-    <div class="social-links">
-        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-</footer>
-
+<body class="bg-leaf-50 text-leaf-900 min-h-screen">
+    <header class="relative overflow-hidden bg-leaf-700 py-20 px-6 text-center">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-1/4 w-64 h-64 rounded-full bg-gold-400 blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-leaf-50 blur-3xl"></div>
+        </div>
+        <div class="relative max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
+                <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>
+                <span class="text-sm font-medium text-white/80">School Sustainability</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">Sustainability Initiatives in Schools</h1>
+            <p class="mt-6 text-lg text-white/70 max-w-xl mx-auto">Building a greener future through education, responsibility, and innovation.</p>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-6 py-16 space-y-12">
+        <!-- Section 1 -->
+        <section class="bg-white rounded-2xl shadow-sm border border-leaf-200 p-8 md:p-10">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-leaf-100">
+                    <svg class="w-5 h-5 text-leaf-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold">1. Educational Importance</h2>
+            </div>
+            <p class="text-leaf-700/80 leading-relaxed mb-8">Sustainability is no longer a niche subject but a fundamental competence for the 21st century. Schools have a responsibility to prepare students for real-world challenges such as climate change, resource scarcity, and social responsibility.</p>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Mandatory Extracurricular Classes</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Promote interdisciplinary learning by connecting science, economics, ethics, and civic education</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Develop critical thinking and problem-solving skills through real-life projects and case studies</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourage responsible decision-making by helping students understand the impact of their everyday actions</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Support global citizenship and prepare students for future academic and professional environments</li>
+                    </ul>
+                    <p class="mt-4 pl-4 border-l-2 border-gold-400 text-leaf-800/80 italic text-sm">By making these classes mandatory, the school ensures that all students gain essential sustainability literacy.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Long-Term Appreciation and Personal Growth</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Hands-on learning (recycling initiatives, energy audits, school gardens) creates personal connections</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Tangible results increase motivation and sense of agency</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Development of values such as responsibility, cooperation, and respect for resources</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Builds a mindset of stewardship for a sustainable future</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Institutional and Community Benefits</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Enhances the school's profile as a responsible institution</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Strengthens partnerships with local organizations</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Creates a positive school culture centered on shared responsibility</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Section 2 -->
+        <section class="bg-white rounded-2xl shadow-sm border border-leaf-200 p-8 md:p-10">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-leaf-100">
+                    <svg class="w-5 h-5 text-leaf-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold">2. Importance of Reducing Food Waste</h2>
+            </div>
+            <p class="text-leaf-700/80 leading-relaxed mb-8">Food waste is a major global and local issue with environmental, economic, and social consequences. A policy that bans unnecessary disposal of edible food and promotes donation has clear benefits.</p>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Key Benefits</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reduces environmental footprint and greenhouse gas emissions</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Teaches responsible resource management</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Addresses social inequality by supporting people in need</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Models ethical and sustainable institutional behavior</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Educational Value and Student Development</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Hands-on learning about supply chains, consumption, and social justice</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourages student leadership in organizing donation systems</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Strengthens empathy and social responsibility</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Promotes mindful consumption habits</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Appreciation and School Culture</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Students value food more by recognizing its importance to others</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Develop pride in contributing to community support</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Build shared purpose within the school</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Foster gratitude and ethical awareness</li>
+                    </ul>
+                    <p class="mt-4 pl-4 border-l-2 border-gold-400 text-leaf-800/80 italic text-sm">This appreciation often leads to long-term behavioral change beyond school.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Section 3 -->
+        <section class="bg-white rounded-2xl shadow-sm border border-leaf-200 p-8 md:p-10">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-leaf-100">
+                    <svg class="w-5 h-5 text-leaf-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold">3. Using iPads Instead of Excessive Paper</h2>
+            </div>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Importance of Reducing Paper Use</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reduces ecological footprint by lowering paper demand</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Supports responsible resource use</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reflects modern learning environments</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Minimizes physical waste</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Educational Benefits</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Enhances interactive and personalized learning</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Improves organization and accessibility</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Develops digital literacy and media competence</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourages collaborative learning</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400 inline-block"></span>Appreciation and Student Mindset</h3>
+                    <ul class="space-y-2 ml-4">
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Raises awareness of resource consumption</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Encourages mindful use of digital technology</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Creates pride in sustainable participation</li>
+                        <li class="flex items-start gap-3 text-leaf-700/80"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-400/40 shrink-0"></span>Reinforces long-term sustainable habits</li>
+                    </ul>
+                    <p class="mt-4 pl-4 border-l-2 border-gold-400 text-leaf-800/80 italic text-sm">Sustainability is not a restriction, but an innovation that improves both education and environmental responsibility.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="border-t border-leaf-200 py-8 text-center text-sm text-leaf-700/60">
+        <p>Sustainability Initiatives in Schools &middot; Building a greener tomorrow</p>
+    </footer>
 </body>
 </html>
