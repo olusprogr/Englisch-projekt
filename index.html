@@ -424,7 +424,7 @@
 
     const pc=document.getElementById('particles');
     const colors=['#5aa87a','#d4a843','#baddc5','#1e5a3c','#e8c97a'];
-    for(let i=0;i<30;i++){
+    for(let i=0;i<150;i++){
         const p=document.createElement('div'); p.className='particle';
         const s=Math.random()*8+4;
         p.style.cssText=`left:${Math.random()*100}%;bottom:-20px;width:${s}px;height:${s}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*10}s;`;
