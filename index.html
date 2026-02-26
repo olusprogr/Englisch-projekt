@@ -7,911 +7,428 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --leaf-50: #f0f7f2;
-            --leaf-100: #dceee1;
-            --leaf-200: #baddc5;
-            --leaf-400: #5aa87a;
-            --leaf-700: #1e5a3c;
-            --leaf-800: #1a4832;
-            --leaf-900: #133b29;
-            --gold: #d4a843;
-            --gold-light: #e8c97a;
+            --leaf-50: #f0f7f2; --leaf-100: #dceee1; --leaf-200: #baddc5;
+            --leaf-400: #5aa87a; --leaf-700: #1e5a3c; --leaf-800: #1a4832;
+            --leaf-900: #133b29; --gold: #d4a843; --gold-light: #e8c97a;
         }
-
         html { scroll-behavior: smooth; }
+        body { font-family: 'Source Sans 3', sans-serif; background: var(--leaf-50); color: var(--leaf-900); min-height: 100vh; overflow-x: hidden; }
 
-        body {
-            font-family: 'Source Sans 3', sans-serif;
-            background: var(--leaf-50);
-            color: var(--leaf-900);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* ===== FLOATING PARTICLES ===== */
-        #particles {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0;
-            animation: floatUp linear infinite;
-        }
-
+        #particles { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+        .particle { position:absolute; border-radius:50%; opacity:0; animation: floatUp linear infinite; }
         @keyframes floatUp {
-            0%   { opacity: 0; transform: translateY(0) scale(0.5) rotate(0deg); }
-            10%  { opacity: 0.6; }
-            90%  { opacity: 0.3; }
-            100% { opacity: 0; transform: translateY(-110vh) scale(1.2) rotate(360deg); }
+            0% { opacity:0; transform:translateY(0) scale(0.5) rotate(0deg); }
+            10% { opacity:0.5; } 90% { opacity:0.2; }
+            100% { opacity:0; transform:translateY(-110vh) scale(1.2) rotate(360deg); }
         }
 
-        /* ===== CURSOR ===== */
-        .cursor-dot {
-            width: 8px; height: 8px;
-            background: var(--gold);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s;
-            transform: translate(-50%, -50%);
-        }
-        .cursor-ring {
-            width: 32px; height: 32px;
-            border: 1.5px solid var(--leaf-400);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.12s ease, width 0.2s, height 0.2s, opacity 0.2s;
-            transform: translate(-50%, -50%);
-        }
+        .cursor-dot { width:8px; height:8px; background:var(--gold); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+        .cursor-ring { width:32px; height:32px; border:1.5px solid var(--leaf-400); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transition:transform .12s ease, width .2s, height .2s, opacity .2s; transform:translate(-50%,-50%); }
 
-        /* ===== HEADER ===== */
-        header {
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+        #progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--leaf-400),var(--gold)); z-index:1000; width:0%; transition:width .1s; box-shadow:0 0 8px var(--gold); }
 
-        .header-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, #0d3d25 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, #1e5a3c 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, #133b29 0%, transparent 50%),
-                linear-gradient(135deg, #0a2d1c 0%, #1e5a3c 50%, #0f3d26 100%);
-        }
+        header { position:relative; overflow:hidden; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; }
+        .header-bg { position:absolute; inset:0; background: radial-gradient(ellipse at 20% 50%, #0d3d25 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, #1e5a3c 0%, transparent 50%), linear-gradient(135deg, #0a2d1c 0%, #1e5a3c 50%, #0f3d26 100%); }
+        .grid-overlay { position:absolute; inset:0; background-image: linear-gradient(rgba(90,168,122,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(90,168,122,.07) 1px, transparent 1px); background-size:60px 60px; animation:gridShift 20s linear infinite; }
+        @keyframes gridShift { 0% { background-position:0 0; } 100% { background-position:60px 60px; } }
+        .orb { position:absolute; border-radius:50%; filter:blur(80px); animation:orbPulse ease-in-out infinite alternate; }
+        .orb-1 { width:500px; height:500px; background:rgba(90,168,122,.2); top:-100px; left:-150px; animation-duration:7s; }
+        .orb-2 { width:400px; height:400px; background:rgba(212,168,67,.15); bottom:-50px; right:-100px; animation-duration:5s; }
+        .orb-3 { width:300px; height:300px; background:rgba(30,90,60,.3); top:50%; left:50%; transform:translate(-50%,-50%); animation-duration:9s; }
+        @keyframes orbPulse { 0% { transform:scale(1) translate(0,0); } 100% { transform:scale(1.2) translate(20px,-20px); } }
+        .forest-silhouette { position:absolute; bottom:0; left:0; width:100%; height:40%; opacity:.22; }
+        .header-content { position:relative; z-index:2; max-width:820px; padding:2rem; }
+        .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.12); border-radius:100px; padding:6px 18px; margin-bottom:2rem; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+        .badge span { font-size:.8rem; font-weight:500; color:rgba(255,255,255,.75); letter-spacing:.08em; text-transform:uppercase; }
+        .badge-dot { width:6px; height:6px; background:var(--gold); border-radius:50%; animation:dotPulse 2s ease-in-out infinite; }
+        @keyframes dotPulse { 0%,100% { box-shadow:0 0 0 0 rgba(212,168,67,.6); } 50% { box-shadow:0 0 0 6px rgba(212,168,67,0); } }
+        header h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,5.5rem); color:white; line-height:1.1; opacity:0; transform:translateY(30px); animation:fadeUp 1s .4s forwards; }
+        header h1 em { font-style:italic; color:var(--gold-light); }
+        .header-sub { margin-top:1.5rem; font-size:1.1rem; color:rgba(255,255,255,.6); max-width:520px; margin-inline:auto; opacity:0; transform:translateY(20px); animation:fadeUp .8s .7s forwards; }
+        .scroll-indicator { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; animation:fadeUp .8s 1.2s forwards; }
+        .scroll-indicator span { font-size:.7rem; color:rgba(255,255,255,.4); letter-spacing:.15em; text-transform:uppercase; }
+        .scroll-line { width:1px; height:50px; background:linear-gradient(to bottom,var(--gold),transparent); animation:scrollLine 2s ease-in-out infinite; transform-origin:top; }
+        @keyframes scrollLine { 0% { transform:scaleY(0); opacity:0; } 50% { transform:scaleY(1); opacity:1; } 100% { transform:scaleY(1) translateY(20px); opacity:0; } }
+        @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 
-        /* Animated SVG forest silhouette */
-        .forest-silhouette {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            opacity: 0.25;
-        }
+        .stats-bar { background:var(--leaf-700); padding:1.5rem 2rem; display:flex; justify-content:center; gap:4rem; flex-wrap:wrap; position:relative; z-index:1; }
+        .stat-item { text-align:center; color:white; opacity:0; transform:translateY(15px); transition:opacity .6s, transform .6s; }
+        .stat-item.visible { opacity:1; transform:translateY(0); }
+        .stat-item strong { display:block; font-size:2rem; font-family:'Playfair Display',serif; color:var(--gold-light); }
+        .stat-item small { font-size:.78rem; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.08em; }
 
-        /* Animated grid overlay */
-        .grid-overlay {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(90,168,122,0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(90,168,122,0.07) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridShift 20s linear infinite;
-        }
+        main { max-width:960px; margin:0 auto; padding:5rem 1.5rem; display:flex; flex-direction:column; gap:2.5rem; position:relative; z-index:1; }
 
-        @keyframes gridShift {
-            0%   { background-position: 0 0; }
-            100% { background-position: 60px 60px; }
-        }
+        .section-card { background:white; border-radius:24px; border:1px solid var(--leaf-100); padding:3rem; position:relative; overflow:hidden; opacity:0; transform:translateY(40px); transition:opacity .7s ease, transform .7s ease, box-shadow .3s; box-shadow:0 4px 24px rgba(19,59,41,.06); }
+        .section-card.visible { opacity:1; transform:translateY(0); }
+        .section-card:hover { box-shadow:0 20px 60px rgba(19,59,41,.12); transform:translateY(-4px); }
+        .section-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--leaf-400),var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform .5s ease; }
+        .section-card.visible::before { transform:scaleX(1); }
+        .section-card::after { content:''; position:absolute; top:-80px; right:-80px; width:250px; height:250px; background:radial-gradient(circle,var(--leaf-50) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
+        .section-card:nth-child(1) { transition-delay:.05s; }
+        .section-card:nth-child(2) { transition-delay:.1s; }
+        .section-card:nth-child(3) { transition-delay:.15s; }
+        .section-card:nth-child(4) { transition-delay:.2s; }
 
-        /* Glowing orbs */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: orbPulse ease-in-out infinite alternate;
-        }
-        .orb-1 { width: 500px; height: 500px; background: rgba(90,168,122,0.2); top: -100px; left: -150px; animation-duration: 7s; }
-        .orb-2 { width: 400px; height: 400px; background: rgba(212,168,67,0.15); bottom: -50px; right: -100px; animation-duration: 5s; }
-        .orb-3 { width: 300px; height: 300px; background: rgba(30,90,60,0.3); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 9s; }
+        .card-header { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; position:relative; }
+        .card-icon { width:52px; height:52px; background:linear-gradient(135deg,var(--leaf-100),var(--leaf-50)); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid var(--leaf-200); transition:transform .3s, background .3s; }
+        .section-card:hover .card-icon { transform:rotate(-8deg) scale(1.1); background:linear-gradient(135deg,var(--leaf-700),var(--leaf-400)); }
+        .section-card:hover .card-icon svg { stroke:white; }
+        .card-icon svg { width:24px; height:24px; stroke:var(--leaf-700); stroke-width:1.8; fill:none; transition:stroke .3s; }
+        .card-header h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--leaf-900); }
+        .card-intro { color:rgba(19,59,41,.65); line-height:1.75; margin-bottom:2rem; font-size:.98rem; }
 
-        @keyframes orbPulse {
-            0%   { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.2) translate(20px, -20px); }
-        }
+        .subsections { display:flex; flex-direction:column; gap:1.8rem; }
+        .subsection h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--leaf-800); margin-bottom:.8rem; display:flex; align-items:center; gap:.6rem; }
+        .subsection h3::before { content:''; display:inline-block; width:20px; height:2px; background:var(--gold); border-radius:2px; transition:width .3s; }
+        .subsection:hover h3::before { width:30px; }
+        .point-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:.5rem; }
+        .point-list li { display:flex; align-items:flex-start; gap:.75rem; color:rgba(19,59,41,.72); font-size:.95rem; line-height:1.6; padding:.4rem .6rem; border-radius:8px; transition:background .2s, transform .2s; cursor:default; }
+        .point-list li:hover { background:var(--leaf-50); transform:translateX(4px); }
+        .point-list li::before { content:''; flex-shrink:0; width:5px; height:5px; background:var(--leaf-400); border-radius:50%; margin-top:8px; transition:background .2s, transform .2s; }
+        .point-list li:hover::before { background:var(--gold); transform:scale(1.5); }
+        .highlight-box { margin-top:1rem; padding:1rem 1.2rem; border-left:3px solid var(--gold); background:linear-gradient(90deg,rgba(212,168,67,.06),transparent); border-radius:0 10px 10px 0; font-style:italic; font-size:.9rem; color:var(--leaf-800); position:relative; overflow:hidden; }
+        .highlight-box::before { content:'"'; position:absolute; top:-10px; left:8px; font-size:4rem; color:var(--gold); opacity:.15; font-family:'Playfair Display',serif; }
+        .card-divider { height:1px; background:linear-gradient(90deg,transparent,var(--leaf-100),transparent); margin:1.5rem 0; }
+        .impact-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.5rem; }
+        .tag { padding:4px 12px; border-radius:100px; font-size:.75rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+        .tag-green { background:rgba(90,168,122,.12); color:var(--leaf-700); border:1px solid rgba(90,168,122,.25); }
+        .tag-gold  { background:rgba(212,168,67,.12); color:#8a6b1c; border:1px solid rgba(212,168,67,.3); }
+        .tag-red   { background:rgba(180,60,60,.08); color:#8a2c2c; border:1px solid rgba(180,60,60,.2); }
 
-        .header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 780px;
-            padding: 2rem;
-        }
+        /* Meatless Monday layout */
+        .meatless-hero { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2rem; align-items:start; }
+        @media(max-width:680px) { .meatless-hero { grid-template-columns:1fr; } }
+        .meatless-image-wrap { border-radius:16px; overflow:hidden; position:relative; box-shadow:0 8px 32px rgba(19,59,41,.15); aspect-ratio:4/3; }
+        .meatless-image-wrap img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+        .section-card:hover .meatless-image-wrap img { transform:scale(1.04); }
+        .meatless-image-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(10,30,18,.85),transparent); padding:1.5rem 1rem .8rem; font-size:.8rem; color:rgba(255,255,255,.7); font-style:italic; }
+        .meatless-intro-col { display:flex; flex-direction:column; gap:1rem; }
+        .meatless-stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin:.5rem 0; }
+        .meatless-stat { background:var(--leaf-50); border:1px solid var(--leaf-100); border-radius:12px; padding:.9rem; text-align:center; transition:transform .2s, box-shadow .2s; }
+        .meatless-stat:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(19,59,41,.1); }
+        .meatless-stat strong { display:block; font-size:1.4rem; font-family:'Playfair Display',serif; color:var(--leaf-700); }
+        .meatless-stat span { font-size:.72rem; color:rgba(19,59,41,.55); text-transform:uppercase; letter-spacing:.05em; }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 100px;
-            padding: 6px 18px;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 0.2s forwards;
-        }
+        #backTop { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; background:var(--leaf-700); border:none; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; transform:translateY(10px); transition:opacity .3s, transform .3s, background .2s; z-index:500; box-shadow:0 4px 20px rgba(19,59,41,.3); }
+        #backTop.show { opacity:1; transform:translateY(0); }
+        #backTop:hover { background:var(--leaf-400); }
+        #backTop svg { width:18px; height:18px; stroke:white; stroke-width:2; fill:none; }
 
-        .badge span { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: 0.08em; text-transform: uppercase; }
-        .badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,67,0.6); }
-            50% { box-shadow: 0 0 0 6px rgba(212,168,67,0); }
-        }
-
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 5.5rem);
-            color: white;
-            line-height: 1.1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s 0.4s forwards;
-        }
-
-        header h1 em {
-            font-style: italic;
-            color: var(--gold-light);
-        }
-
-        .header-sub {
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.6);
-            max-width: 500px;
-            margin-inline: auto;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 0.7s forwards;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            animation: fadeUp 0.8s 1.2s forwards;
-        }
-
-        .scroll-indicator span { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; }
-
-        .scroll-line {
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, var(--gold), transparent);
-            animation: scrollLine 2s ease-in-out infinite;
-            transform-origin: top;
-        }
-
-        @keyframes scrollLine {
-            0%   { transform: scaleY(0); opacity: 0; }
-            50%  { transform: scaleY(1); opacity: 1; }
-            100% { transform: scaleY(1) translateY(20px); opacity: 0; }
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== STATS BAR ===== */
-        .stats-bar {
-            background: var(--leaf-700);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            text-align: center;
-            color: white;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .stat-item.visible { opacity: 1; transform: translateY(0); }
-        .stat-item strong { display: block; font-size: 2rem; font-family: 'Playfair Display', serif; color: var(--gold-light); }
-        .stat-item small { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
-
-        /* ===== MAIN ===== */
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 5rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Timeline connector */
-        main::before {
-            content: '';
-            position: absolute;
-            left: calc(50% - 1px);
-            top: 5rem; bottom: 5rem;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--leaf-200) 10%, var(--leaf-200) 90%, transparent);
-            opacity: 0.5;
-            display: none;
-        }
-
-        /* ===== CARDS ===== */
-        .section-card {
-            background: white;
-            border-radius: 24px;
-            border: 1px solid var(--leaf-100);
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s;
-            box-shadow: 0 4px 24px rgba(19,59,41,0.06);
-        }
-
-        .section-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-card:hover {
-            box-shadow: 0 20px 60px rgba(19,59,41,0.12);
-            transform: translateY(-4px);
-        }
-
-        /* Card accent bar */
-        .section-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--leaf-400), var(--gold));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .section-card.visible::before { transform: scaleX(1); }
-
-        /* Card background pattern */
-        .section-card::after {
-            content: '';
-            position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, var(--leaf-50) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .card-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, var(--leaf-100), var(--leaf-50));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid var(--leaf-200);
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .section-card:hover .card-icon {
-            transform: rotate(-8deg) scale(1.1);
-            background: linear-gradient(135deg, var(--leaf-700), var(--leaf-400));
-        }
-
-        .section-card:hover .card-icon svg { stroke: white; }
-
-        .card-icon svg { width: 24px; height: 24px; stroke: var(--leaf-700); stroke-width: 1.8; fill: none; transition: stroke 0.3s; }
-
-        .card-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.4rem, 3vw, 2rem);
-            color: var(--leaf-900);
-        }
-
-        .card-intro {
-            color: rgba(19,59,41,0.65);
-            line-height: 1.75;
-            margin-bottom: 2rem;
-            font-size: 0.98rem;
-        }
-
-        /* ===== SUBSECTIONS ===== */
-        .subsections { display: flex; flex-direction: column; gap: 1.8rem; }
-
-        .subsection { position: relative; }
-
-        .subsection h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.05rem;
-            color: var(--leaf-800);
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .subsection h3::before {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 2px;
-            background: var(--gold);
-            border-radius: 2px;
-            transition: width 0.3s;
-        }
-
-        .subsection:hover h3::before { width: 30px; }
-
-        .point-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-
-        .point-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            color: rgba(19,59,41,0.72);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            padding: 0.4rem 0.6rem;
-            border-radius: 8px;
-            transition: background 0.2s, transform 0.2s;
-            cursor: default;
-        }
-
-        .point-list li:hover {
-            background: var(--leaf-50);
-            transform: translateX(4px);
-        }
-
-        .point-list li::before {
-            content: '';
-            flex-shrink: 0;
-            width: 5px;
-            height: 5px;
-            background: var(--leaf-400);
-            border-radius: 50%;
-            margin-top: 8px;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .point-list li:hover::before {
-            background: var(--gold);
-            transform: scale(1.5);
-        }
-
-        .highlight-box {
-            margin-top: 1rem;
-            padding: 1rem 1.2rem;
-            border-left: 3px solid var(--gold);
-            background: linear-gradient(90deg, rgba(212,168,67,0.06), transparent);
-            border-radius: 0 10px 10px 0;
-            font-style: italic;
-            font-size: 0.9rem;
-            color: var(--leaf-800);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-box::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 8px;
-            font-size: 4rem;
-            color: var(--gold);
-            opacity: 0.15;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Section divider inside card */
-        .card-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--leaf-100), transparent);
-            margin: 1.5rem 0;
-        }
-
-        /* ===== PROGRESS TAGS ===== */
-        .impact-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .tag {
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .tag-green { background: rgba(90,168,122,0.12); color: var(--leaf-700); border: 1px solid rgba(90,168,122,0.25); }
-        .tag-gold  { background: rgba(212,168,67,0.12); color: #8a6b1c; border: 1px solid rgba(212,168,67,0.3); }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--leaf-900);
-            padding: 4rem 2rem 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .footer-leaf {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-            animation: sway 4s ease-in-out infinite;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50%       { transform: rotate(5deg); }
-        }
-
-        footer p { position: relative; color: rgba(255,255,255,0.35); font-size: 0.85rem; }
-        footer strong { color: rgba(255,255,255,0.6); }
-
-        /* ===== SCROLL PROGRESS ===== */
-        #progress {
-            position: fixed;
-            top: 0; left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--leaf-400), var(--gold));
-            z-index: 1000;
-            width: 0%;
-            transition: width 0.1s;
-            box-shadow: 0 0 8px var(--gold);
-        }
-
-        /* ===== BACK TO TOP ===== */
-        #backTop {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 44px;
-            height: 44px;
-            background: var(--leaf-700);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s, transform 0.3s, background 0.2s;
-            z-index: 500;
-            box-shadow: 0 4px 20px rgba(19,59,41,0.3);
-        }
-
-        #backTop.show { opacity: 1; transform: translateY(0); }
-        #backTop:hover { background: var(--leaf-400); }
-        #backTop svg { width: 18px; height: 18px; stroke: white; stroke-width: 2; fill: none; }
-
-        /* ===== REVEAL TRANSITIONS ===== */
-        .section-card:nth-child(1) { transition-delay: 0.05s; }
-        .section-card:nth-child(2) { transition-delay: 0.1s; }
-        .section-card:nth-child(3) { transition-delay: 0.15s; }
-
+        footer { background:var(--leaf-900); padding:4rem 2rem 3rem; text-align:center; position:relative; overflow:hidden; }
+        footer::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .footer-leaf { font-size:3rem; margin-bottom:1rem; display:block; animation:sway 4s ease-in-out infinite; }
+        @keyframes sway { 0%,100% { transform:rotate(-5deg); } 50% { transform:rotate(5deg); } }
+        footer p { position:relative; color:rgba(255,255,255,.35); font-size:.85rem; }
+        footer strong { color:rgba(255,255,255,.6); }
     </style>
 </head>
 <body>
-
-<!-- Custom cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
-<!-- Scroll progress bar -->
 <div id="progress"></div>
-
-<!-- Floating particles -->
 <div id="particles"></div>
-
-<!-- Back to top -->
 <button id="backTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<!-- ===== HEADER ===== -->
 <header>
     <div class="header-bg"></div>
     <div class="grid-overlay"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-
-    <!-- Animated SVG Forest -->
-    <svg class="forest-silhouette" viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="forest-silhouette" viewBox="0 0 1440 300" preserveAspectRatio="none">
         <g fill="rgba(90,168,122,0.6)">
-            <polygon points="0,300 60,180 120,300"/>
-            <polygon points="80,300 150,140 220,300"/>
-            <polygon points="160,300 240,100 320,300"/>
-            <polygon points="260,300 330,160 400,300"/>
-            <polygon points="340,300 420,80 500,300"/>
-            <polygon points="440,300 510,130 580,300"/>
-            <polygon points="530,300 610,90 690,300"/>
-            <polygon points="640,300 720,150 800,300"/>
-            <polygon points="740,300 820,70 900,300"/>
-            <polygon points="840,300 920,120 1000,300"/>
-            <polygon points="940,300 1020,100 1100,300"/>
-            <polygon points="1040,300 1120,160 1200,300"/>
-            <polygon points="1140,300 1220,110 1300,300"/>
-            <polygon points="1240,300 1320,140 1400,300"/>
-            <polygon points="1340,300 1400,180 1440,300"/>
+            <polygon points="0,300 60,180 120,300"/><polygon points="80,300 150,140 220,300"/>
+            <polygon points="160,300 240,100 320,300"/><polygon points="260,300 330,160 400,300"/>
+            <polygon points="340,300 420,80 500,300"/><polygon points="440,300 510,130 580,300"/>
+            <polygon points="530,300 610,90 690,300"/><polygon points="640,300 720,150 800,300"/>
+            <polygon points="740,300 820,70 900,300"/><polygon points="840,300 920,120 1000,300"/>
+            <polygon points="940,300 1020,100 1100,300"/><polygon points="1040,300 1120,160 1200,300"/>
+            <polygon points="1140,300 1220,110 1300,300"/><polygon points="1240,300 1320,140 1400,300"/>
         </g>
-        <g fill="rgba(30,90,60,0.8)">
-            <polygon points="20,300 80,200 140,300"/>
-            <polygon points="120,300 190,160 260,300"/>
-            <polygon points="230,300 300,120 370,300"/>
-            <polygon points="320,300 400,180 480,300"/>
-            <polygon points="460,300 530,100 600,300"/>
-            <polygon points="560,300 640,150 720,300"/>
-            <polygon points="680,300 750,110 820,300"/>
-            <polygon points="780,300 860,170 940,300"/>
-            <polygon points="880,300 960,90 1040,300"/>
-            <polygon points="980,300 1060,140 1140,300"/>
-            <polygon points="1100,300 1180,120 1260,300"/>
-            <polygon points="1200,300 1280,160 1360,300"/>
-            <polygon points="1300,300 1380,190 1440,300"/>
+        <g fill="rgba(30,90,60,0.85)">
+            <polygon points="20,300 80,200 140,300"/><polygon points="120,300 190,160 260,300"/>
+            <polygon points="230,300 300,120 370,300"/><polygon points="320,300 400,180 480,300"/>
+            <polygon points="460,300 530,100 600,300"/><polygon points="560,300 640,150 720,300"/>
+            <polygon points="680,300 750,110 820,300"/><polygon points="780,300 860,170 940,300"/>
+            <polygon points="880,300 960,90 1040,300"/><polygon points="980,300 1060,140 1140,300"/>
+            <polygon points="1100,300 1180,120 1260,300"/><polygon points="1200,300 1280,160 1360,300"/>
         </g>
     </svg>
-
     <div class="header-content">
-        <div class="badge">
-            <div class="badge-dot"></div>
-            <span>School Sustainability</span>
-        </div>
+        <div class="badge"><div class="badge-dot"></div><span>School Sustainability</span></div>
         <h1>Sustainability<br>Initiatives in <em>Schools</em></h1>
         <p class="header-sub">Building a greener future through education, responsibility, and innovation.</p>
     </div>
-
-    <div class="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-    </div>
+    <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
 </header>
 
-<!-- ===== STATS BAR ===== -->
 <div class="stats-bar">
-    <div class="stat-item"><strong data-count="3">0</strong><small>Key Initiatives</small></div>
-    <div class="stat-item"><strong data-count="40">0</strong><small>% Less Paper Used</small></div>
+    <div class="stat-item"><strong data-count="4">0</strong><small>Key Initiatives</small></div>
+    <div class="stat-item"><strong data-count="40">0</strong><small>% Less Paper</small></div>
     <div class="stat-item"><strong data-count="60">0</strong><small>% Food Waste Reduced</small></div>
     <div class="stat-item"><strong data-count="100">0</strong><small>% Student Impact</small></div>
 </div>
 
-<!-- ===== MAIN ===== -->
 <main>
 
-    <!-- Section 1 -->
+    <!-- 1 -->
     <section class="section-card">
         <div class="card-header">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>
-            </div>
+            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg></div>
             <h2>1. Educational Importance</h2>
         </div>
-
         <p class="card-intro">Sustainability is no longer a niche subject but a fundamental competence for the 21st century. Schools have a responsibility to prepare students for real-world challenges such as climate change, resource scarcity, and social responsibility.</p>
-
         <div class="impact-tags">
             <span class="tag tag-green">Climate Literacy</span>
             <span class="tag tag-green">Critical Thinking</span>
             <span class="tag tag-gold">Global Citizenship</span>
         </div>
-
         <div class="card-divider"></div>
-
         <div class="subsections">
             <div class="subsection">
                 <h3>Mandatory Extracurricular Classes</h3>
                 <ul class="point-list">
                     <li>Promote interdisciplinary learning by connecting science, economics, ethics, and civic education</li>
                     <li>Develop critical thinking and problem-solving skills through real-life projects and case studies</li>
-                    <li>Encourage responsible decision-making by helping students understand the impact of their everyday actions</li>
-                    <li>Support global citizenship and prepare students for future academic and professional environments</li>
+                    <li>Encourage responsible decision-making, helping students understand the impact of their everyday actions</li>
+                    <li>Support global citizenship, aligning with international education goals and preparing students for future academic and professional environments</li>
                 </ul>
-                <div class="highlight-box">By making these classes mandatory, the school ensures that all students gain essential sustainability literacy.</div>
+                <div class="highlight-box">By making these classes mandatory, the school ensures that all students—not only those already interested—gain essential sustainability literacy.</div>
             </div>
-
             <div class="card-divider"></div>
-
             <div class="subsection">
                 <h3>Long-Term Appreciation and Personal Growth</h3>
                 <ul class="point-list">
-                    <li>Hands-on learning (recycling initiatives, energy audits, school gardens) creates personal connections</li>
-                    <li>Tangible results increase motivation and sense of agency</li>
+                    <li>Hands-on learning (recycling initiatives, energy audits, school gardens) creates personal connections to the topic</li>
+                    <li>Tangible results of their actions increase motivation and a sense of agency</li>
                     <li>Development of values such as responsibility, cooperation, and respect for resources</li>
-                    <li>Builds a mindset of stewardship for a sustainable future</li>
+                    <li>Builds a mindset of stewardship — understanding that students are active contributors to a sustainable future</li>
                 </ul>
+                <div class="highlight-box">This appreciation often leads to lasting behavioral changes, greater community engagement, and increased pride in the school's values.</div>
             </div>
-
             <div class="card-divider"></div>
-
             <div class="subsection">
                 <h3>Institutional and Community Benefits</h3>
                 <ul class="point-list">
-                    <li>Enhances the school's profile as a responsible institution</li>
-                    <li>Strengthens partnerships with local organizations</li>
-                    <li>Creates a positive school culture centered on shared responsibility</li>
+                    <li>Enhances the school's profile as a forward-thinking, socially responsible institution</li>
+                    <li>Strengthens partnerships with local organizations and sustainability projects</li>
+                    <li>Creates a positive school culture centered on shared responsibility and participation</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Section 2 -->
+    <!-- 2 -->
     <section class="section-card">
         <div class="card-header">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
-            </div>
+            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg></div>
             <h2>2. Reducing Food Waste</h2>
         </div>
-
-        <p class="card-intro">Food waste is a major global and local issue with environmental, economic, and social consequences. A policy that bans unnecessary disposal of edible food and promotes donation has clear benefits.</p>
-
+        <p class="card-intro">Food waste is a major global and local issue with environmental, economic, and social consequences. A policy banning unnecessary disposal of edible food and promoting donation instead has clear, far-reaching benefits.</p>
         <div class="impact-tags">
             <span class="tag tag-green">Zero Waste</span>
             <span class="tag tag-gold">Social Justice</span>
             <span class="tag tag-green">Community Impact</span>
         </div>
-
         <div class="card-divider"></div>
-
         <div class="subsections">
             <div class="subsection">
                 <h3>Key Benefits</h3>
                 <ul class="point-list">
-                    <li>Reduces environmental footprint and greenhouse gas emissions</li>
-                    <li>Teaches responsible resource management</li>
-                    <li>Addresses social inequality by supporting people in need</li>
-                    <li>Models ethical and sustainable institutional behavior</li>
+                    <li>Reduces environmental footprint — food waste contributes to greenhouse gas emissions and inefficient use of water, energy, and land</li>
+                    <li>Teaches responsible resource management, helping students understand the value of food and the impact of overconsumption</li>
+                    <li>Addresses social inequality by supporting people in need within the local community</li>
+                    <li>Models ethical behavior, showing that institutions have a duty to act sustainably and compassionately</li>
                 </ul>
+                <div class="highlight-box">This policy turns sustainability from a theoretical concept into a visible daily practice.</div>
             </div>
-
             <div class="card-divider"></div>
-
             <div class="subsection">
                 <h3>Educational Value and Student Development</h3>
                 <ul class="point-list">
-                    <li>Hands-on learning about supply chains, consumption, and social justice</li>
-                    <li>Encourages student leadership in organizing donation systems</li>
-                    <li>Strengthens empathy and social responsibility</li>
-                    <li>Promotes mindful consumption habits</li>
+                    <li>Hands-on learning opportunities about supply chains, consumption patterns, and social justice</li>
+                    <li>Encourages student participation and leadership in organizing collection, sorting, and distribution</li>
+                    <li>Strengthens empathy and social responsibility, as students become aware of food insecurity and homelessness</li>
+                    <li>Promotes mindful consumption habits, reducing "take more than you eat" behavior in cafeterias</li>
                 </ul>
             </div>
-
             <div class="card-divider"></div>
-
             <div class="subsection">
                 <h3>Appreciation and School Culture</h3>
                 <ul class="point-list">
-                    <li>Students value food more by recognizing its importance to others</li>
-                    <li>Develop pride in contributing to community support</li>
-                    <li>Build shared purpose within the school</li>
-                    <li>Foster gratitude and ethical awareness</li>
+                    <li>Students value food more because they see its direct importance to others</li>
+                    <li>They develop pride in contributing to meaningful community support</li>
+                    <li>The school community gains a shared sense of purpose, reinforcing cooperation and respect</li>
+                    <li>Donating rather than discarding food fosters a culture of gratitude and ethical awareness</li>
                 </ul>
                 <div class="highlight-box">This appreciation often leads to long-term behavioral change beyond school.</div>
             </div>
         </div>
     </section>
 
-    <!-- Section 3 -->
+    <!-- 3 -->
     <section class="section-card">
         <div class="card-header">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01" stroke-linecap="round" stroke-width="2"/></svg>
-            </div>
+            <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01" stroke-linecap="round" stroke-width="2"/></svg></div>
             <h2>3. iPads Instead of Paper</h2>
         </div>
-
         <div class="impact-tags">
             <span class="tag tag-green">Digital Learning</span>
             <span class="tag tag-gold">Eco Innovation</span>
             <span class="tag tag-green">Future-Ready</span>
         </div>
-
         <div class="card-divider"></div>
-
         <div class="subsections">
             <div class="subsection">
                 <h3>Importance of Reducing Paper Use</h3>
                 <ul class="point-list">
-                    <li>Reduces ecological footprint by lowering paper demand</li>
-                    <li>Supports responsible resource use</li>
-                    <li>Reflects modern learning environments</li>
-                    <li>Minimizes physical waste</li>
+                    <li>Reduces the school's ecological footprint by lowering paper demand and printing-related emissions</li>
+                    <li>Supports responsible resource use, aligning school practices with sustainability goals</li>
+                    <li>Reflects modern learning environments, preparing students for digital academic and professional settings</li>
+                    <li>Minimizes physical waste, contributing to cleaner classrooms and more efficient organization</li>
                 </ul>
+                <div class="highlight-box">This shift demonstrates that sustainability can be integrated into everyday learning processes.</div>
             </div>
-
             <div class="card-divider"></div>
-
             <div class="subsection">
                 <h3>Educational Benefits</h3>
                 <ul class="point-list">
-                    <li>Enhances interactive and personalized learning</li>
-                    <li>Improves organization and accessibility</li>
-                    <li>Develops digital literacy and media competence</li>
-                    <li>Encourages collaborative learning</li>
+                    <li>Enhances interactive and personalized learning through multimedia content, apps, and real-time feedback</li>
+                    <li>Improves organization and accessibility — students can store, search, and annotate materials digitally</li>
+                    <li>Develops digital literacy and media competence, essential 21st-century skills</li>
+                    <li>Encourages collaborative learning, allowing students to share documents and work together efficiently</li>
                 </ul>
             </div>
-
             <div class="card-divider"></div>
-
             <div class="subsection">
                 <h3>Appreciation and Student Mindset</h3>
                 <ul class="point-list">
-                    <li>Raises awareness of resource consumption</li>
-                    <li>Encourages mindful use of digital technology</li>
-                    <li>Creates pride in sustainable participation</li>
-                    <li>Reinforces long-term sustainable habits</li>
+                    <li>Makes students aware of resource consumption and the environmental cost of everyday materials</li>
+                    <li>Encourages mindful usage of digital devices, emphasizing that technology should replace waste rather than create new forms of it</li>
+                    <li>Creates pride in contributing to a sustainable school system</li>
+                    <li>Helps students recognize the long-term value of sustainable habits, such as printing only when necessary</li>
                 </ul>
-                <div class="highlight-box">Sustainability is not a restriction, but an innovation that improves both education and environmental responsibility.</div>
+                <div class="highlight-box">Students learn to see sustainability not as a restriction, but as an innovation that improves their learning experience.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 Meatless Monday -->
+    <section class="section-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="M12 12h.01"/></svg>
+            </div>
+            <h2>4. Meatless Monday</h2>
+        </div>
+
+        <div class="meatless-hero">
+            <div class="meatless-image-wrap">
+                <img src="/mnt/user-data/uploads/1772119364974_image.png" alt="Meatless Monday — Health and Environmental Benefits" />
+                <div class="meatless-image-caption">Health &amp; Environmental Benefits of a weekly meat-free day</div>
+            </div>
+            <div class="meatless-intro-col">
+                <p class="card-intro" style="margin-bottom:0">A meat-free day such as Meatless Monday significantly improves health by lowering risks of chronic diseases like heart disease, type 2 diabetes, and cancer, while aiding weight management. Environmentally, it helps reduce greenhouse gas emissions, conserves water, and protects biodiversity.</p>
+                <div class="impact-tags" style="margin-top:0.5rem">
+                    <span class="tag tag-green">Health</span>
+                    <span class="tag tag-green">Environment</span>
+                    <span class="tag tag-gold">Cost Savings</span>
+                    <span class="tag tag-red">Disease Prevention</span>
+                </div>
+                <div class="meatless-stat-grid">
+                    <div class="meatless-stat"><strong>425 gal</strong><span>Water per burger</span></div>
+                    <div class="meatless-stat"><strong>15%</strong><span>Lower cholesterol</span></div>
+                    <div class="meatless-stat"><strong>↓ CO₂</strong><span>Fewer emissions</span></div>
+                    <div class="meatless-stat"><strong>+ Fiber</strong><span>Better nutrition</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-divider"></div>
+        <div class="subsections">
+            <div class="subsection">
+                <h3>Health Benefits</h3>
+                <ul class="point-list">
+                    <li><strong>Disease Prevention:</strong> Reducing meat intake lowers the risk of chronic illnesses such as stroke and cancer</li>
+                    <li><strong>Improved Nutrition:</strong> A day without meat encourages higher consumption of fruits, vegetables, and legumes, providing essential nutrients</li>
+                    <li><strong>Weight Management:</strong> Meatless meals are often lower in calories, helping with weight control</li>
+                    <li><strong>Blood Pressure &amp; Cholesterol:</strong> A 15% reduction in meat consumption can significantly lower cholesterol and blood pressure levels</li>
+                </ul>
+            </div>
+            <div class="card-divider"></div>
+            <div class="subsection">
+                <h3>Environmental Impact</h3>
+                <ul class="point-list">
+                    <li><strong>Lowered Greenhouse Gases:</strong> Animal agriculture generates significant emissions; reducing meat consumption helps combat climate change</li>
+                    <li><strong>Resource Conservation:</strong> It takes about 425 gallons of water to produce one ¼-pound burger — going meatless saves water and reduces land use</li>
+                    <li><strong>Biodiversity Protection:</strong> Livestock production contributes to habitat destruction and species loss</li>
+                </ul>
+            </div>
+            <div class="card-divider"></div>
+            <div class="subsection">
+                <h3>Personal &amp; Practical Benefits</h3>
+                <ul class="point-list">
+                    <li><strong>Cost Savings:</strong> Plant-based meals are generally cheaper than meat-based ones</li>
+                    <li><strong>Dietary Diversity:</strong> Encourages trying new, nutritious plant-based foods</li>
+                    <li><strong>Environmental Awareness:</strong> It serves as a starting point for adopting a more sustainable lifestyle</li>
+                </ul>
+                <div class="highlight-box">One meatless day per week is a simple, high-impact action that benefits health, the planet, and the entire school community.</div>
             </div>
         </div>
     </section>
 
 </main>
 
-<!-- ===== FOOTER ===== -->
 <footer>
     <span class="footer-leaf">🌿</span>
     <p><strong>Sustainability Initiatives in Schools</strong></p>
-    <p style="margin-top: 0.5rem;">Building a greener tomorrow, one student at a time.</p>
+    <p style="margin-top:.5rem">Building a greener tomorrow, one student at a time.</p>
 </footer>
 
 <script>
-    // ===== CUSTOM CURSOR =====
-    const dot  = document.getElementById('cursorDot');
+    const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-    function animateCursor() {
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        dot.style.left  = mx + 'px';
-        dot.style.top   = my + 'px';
-        ring.style.left = rx + 'px';
-        ring.style.top  = ry + 'px';
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    document.querySelectorAll('a, button, .point-list li').forEach(el => {
-        el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.opacity = '0.5'; });
-        el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; ring.style.opacity = '1'; });
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+    (function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; dot.style.left=mx+'px'; dot.style.top=my+'px'; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+    document.querySelectorAll('a,button,.point-list li,.meatless-stat').forEach(el=>{
+        el.addEventListener('mouseenter',()=>{ ring.style.width='50px'; ring.style.height='50px'; ring.style.opacity='.5'; });
+        el.addEventListener('mouseleave',()=>{ ring.style.width='32px'; ring.style.height='32px'; ring.style.opacity='1'; });
     });
 
-    // ===== SCROLL PROGRESS =====
-    const progress = document.getElementById('progress');
-    const backTop  = document.getElementById('backTop');
-
-    window.addEventListener('scroll', () => {
-        const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        progress.style.width = pct + '%';
-        backTop.classList.toggle('show', window.scrollY > 400);
+    const progress=document.getElementById('progress');
+    const backTop=document.getElementById('backTop');
+    window.addEventListener('scroll',()=>{
+        progress.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+        backTop.classList.toggle('show', window.scrollY>400);
     });
 
-    // ===== SCROLL REVEAL =====
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.section-card,.stat-item').forEach(el=>obs.observe(el));
+
+    const countObs=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+            if(!entry.isIntersecting) return;
+            entry.target.querySelectorAll('[data-count]').forEach((el,i)=>{
+                const target=parseInt(el.dataset.count); let n=0; const step=target/60;
+                setTimeout(()=>{ const iv=setInterval(()=>{ n=Math.min(n+step,target); el.textContent=Math.round(n)+(target>=40?'%':''); if(n>=target) clearInterval(iv); },20); },i*150);
+            });
+            countObs.unobserve(entry.target);
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    },{threshold:.5});
+    document.querySelectorAll('.stats-bar').forEach(el=>countObs.observe(el));
 
-    document.querySelectorAll('.section-card, .stat-item').forEach(el => observer.observe(el));
-
-    // ===== COUNT-UP ANIMATION =====
-    const countObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const nums = entry.target.querySelectorAll('[data-count]');
-                nums.forEach((el, i) => {
-                    const target = parseInt(el.dataset.count);
-                    let start = 0;
-                    const step = target / 60;
-                    setTimeout(() => {
-                        const interval = setInterval(() => {
-                            start = Math.min(start + step, target);
-                            el.textContent = Math.round(start) + (target >= 40 ? '%' : '');
-                            if (start >= target) clearInterval(interval);
-                        }, 20);
-                    }, i * 150);
-                });
-                countObs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stats-bar').forEach(el => countObs.observe(el));
-
-    // ===== FLOATING PARTICLES =====
-    const container = document.getElementById('particles');
-    const shapes = ['●', '▲', '◆', '★'];
-    const colors = ['#5aa87a', '#d4a843', '#baddc5', '#1e5a3c', '#e8c97a'];
-
-    for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 8 + 4;
-        p.style.cssText = `
-            left: ${Math.random() * 100}%;
-            bottom: -20px;
-            width: ${size}px;
-            height: ${size}px;
-            background: ${colors[Math.floor(Math.random() * colors.length)]};
-            opacity: 0;
-            border-radius: ${Math.random() > 0.5 ? '50%' : '3px'};
-            animation-duration: ${8 + Math.random() * 12}s;
-            animation-delay: ${Math.random() * 10}s;
-            transform-origin: center;
-        `;
-        container.appendChild(p);
+    const pc=document.getElementById('particles');
+    const colors=['#5aa87a','#d4a843','#baddc5','#1e5a3c','#e8c97a'];
+    for(let i=0;i<30;i++){
+        const p=document.createElement('div'); p.className='particle';
+        const s=Math.random()*8+4;
+        p.style.cssText=`left:${Math.random()*100}%;bottom:-20px;width:${s}px;height:${s}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*10}s;`;
+        pc.appendChild(p);
     }
 </script>
 </body>
